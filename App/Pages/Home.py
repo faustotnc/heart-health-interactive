@@ -9,3 +9,7 @@ class TheHomePage:
     def display(self):
         # TODO: define the streamlit view here
         st.header("Predicting Heart Desease")
+        
+        st.header("We are looking for correlations in the data that may lead to heart diease");
+        
+        
