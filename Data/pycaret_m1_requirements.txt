@@ -28,3 +28,4 @@ scikit-plot #for lift and gain charts
 Boruta
 numba
 s3fs==2022.3.0
+streamlit==0.76.0
