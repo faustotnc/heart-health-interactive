@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# .streamlit/secrest.toml
+/secrets.toml

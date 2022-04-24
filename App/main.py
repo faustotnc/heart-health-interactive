@@ -1,5 +1,18 @@
 import streamlit as st
+# new imports
+import s3fs
+import os
+# end
 from Pages import Home, TheData, TheModel
+# create connection object
+# `anon=False` means not anonymous, it uses access keys to pull data
+fs = s3fs.S3FileSystem(anon=False)
+# retrieve file contents.
+# uses st.experimental_memo to only rerun when the query changes or after 10 min.
+@st.experimental_memo(ttl=600)
+def read_file(filename):
+    with fs.open(filename) as f:
+        return f.read().decode("utf-8")
 
 THE_HOME_PAGE = Home.TheHomePage()
 THE_DATA_PAGE = TheData.TheDataPage()
