@@ -27,3 +27,4 @@ imbalanced-learn
 scikit-plot #for lift and gain charts
 Boruta
 numba
+s3fs==2022.3.0
