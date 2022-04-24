@@ -1,9 +1,9 @@
 import streamlit as st
-# new imports
 import s3fs
 import os
-# end
+
 from Pages import Home, TheData, TheModel
+
 # create connection object
 # `anon=False` means not anonymous, it uses access keys to pull data
 fs = s3fs.S3FileSystem(anon=False)
