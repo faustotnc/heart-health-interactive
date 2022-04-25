@@ -16,7 +16,7 @@ with st.sidebar:
     st.write("---")
     st.header("Project Overview")
     st.markdown('''
-        Heart disease is one of theleading causes of death for people in the U.S., which is why it is
+        Heart disease is one of the leading causes of death for people in the U.S., which is why it is
         important to find potential causes and indicators that can help us detect and / or prevent
         heart-related issues. Our project attempts to help the general population find key indicators
         of heart disease in their personal life.
