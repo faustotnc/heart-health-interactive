@@ -1,7 +1,17 @@
 import streamlit as st
 from Pages import Home, TheData, TheModel
+from pycaret.classification import *
 
-THE_HOME_PAGE = Home.TheHomePage()
+
+@st.cache
+def load_trained_model():
+    return load_model("./Data/final_model")["trained_model"]
+
+
+# Load the model
+model = load_trained_model()
+
+THE_HOME_PAGE = Home.TheHomePage(model)
 THE_DATA_PAGE = TheData.TheDataPage()
 THE_MODEL_PAGE = TheModel.TheModelPage()
 
