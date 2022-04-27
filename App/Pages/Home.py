@@ -46,10 +46,10 @@ class TheHomePage:
 
         # Transform the input to one-hot encode categorical variables
         prep_pipe = get_config('prep_pipe')
-        transformed_unseen_data = prep_pipe.transform(input_data)
+        transformed_input_data = prep_pipe.transform(input_data)
 
         # Make a Prediction
-        prediction = self.model.predict(transformed_unseen_data)[0]
+        prediction = self.model.predict(transformed_input_data)[0]
 
         # Display the diagnosis
         diagnosis = "Heart Disease" if prediction == 1 else "No Heart Disease"
