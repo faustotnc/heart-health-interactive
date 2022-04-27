@@ -14,9 +14,19 @@ class TheHomePage:
         
         BMI = st.number_input('Insert your BMI')
         
-        option = st.selectbox(
-     'Have you ever been told you had a stroke',
-     ('Yes', 'No'))
+       option = st.selectbox(
+     'How would you like to be contacted?',
+     ( 'Yes', 'No'))
+    
+    option1 = st.selectbox(
+     'Do you have Heart Disease',
+     ( 'Yes', 'No'))
+
+
+
+
+        
+        
 
 
         
