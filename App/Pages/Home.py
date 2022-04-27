@@ -12,4 +12,8 @@ class TheHomePage:
         
         st.header("We are looking for correlations in the data that may lead to heart diease");
         
+        BMI = st.number_input('Insert your BMI')
+        
+        
+        
         
