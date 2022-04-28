@@ -23,6 +23,19 @@ class TheHomePage:
             'How would you like to be contacted?', ('Yes', 'No'))
         option1 = st.selectbox('Do you have Heart Disease', ('Yes', 'No'))
 
+        Smoking = st.selectbox('Do you smoke', ('Yes', 'No'))
+        
+        AlcoholDrinking = st.selectbox('Do you drink more than 14 drinks per week as a male or 7 as a women', ('Yes', 'No'))
+        
+        Stroke = st.selectbox('Have you ever had a stroke', ('Yes', 'No'))
+        
+        Sex = st.selectbox('Are you male or female', ('Male', 'Female')) 
+        
+        Diabetic = st.selectbox('Have you ever had a stroke', ('Yes', 'No'))
+        
+        PhysicalActivity =st.selectbox('Do you engage in physical Activity', ('Yes','No))
+
+        
         # Prepare the model's input data
         input_data = pd.DataFrame({
             "BMI": 34.3,
