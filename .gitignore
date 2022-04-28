@@ -130,3 +130,5 @@ dmypy.json
 
 # .streamlit/secrest.toml
 /secrets.toml
+
+/Data/model_config

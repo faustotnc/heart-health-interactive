@@ -5,13 +5,22 @@ from pycaret.classification import *
 
 @st.cache
 def load_trained_model():
+    load_config("./Data/model_config")
     return load_model("./Data/final_model")["trained_model"]
 
 
-# Load the model
-model = load_trained_model()
+@st.cache
+def load_the_data():
+    return pd.read_csv("./Data/heart_2020.csv")
 
-THE_HOME_PAGE = Home.TheHomePage(model)
+
+# Load the data
+DATA = load_the_data()
+
+# Load the model
+MODEL = load_trained_model()
+
+THE_HOME_PAGE = Home.TheHomePage(DATA, MODEL)
 THE_DATA_PAGE = TheData.TheDataPage()
 THE_MODEL_PAGE = TheModel.TheModelPage()
 
@@ -20,6 +29,13 @@ st.write("---")
 
 # The side bar
 with st.sidebar:
+    st.markdown('''
+        <div style='margin-bottom:24px;text-align:center;'>
+            <span style='font-size:96px;'>🫀</span>
+            <h1>Heart Health Interactive</h1>
+        </div>
+    ''', unsafe_allow_html=True)
+
     st.header("Main Menu")
     option = st.selectbox("Select a Page", ("Home", "The Data", "The Model"))
 
