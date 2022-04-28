@@ -43,11 +43,11 @@ class TheHomePage:
 
         # Row #4
         AgeCategory = col1.selectbox(
-            'What is your age range?', self.data["AgeCategory"].unique())
+            'What is your age range?', sorted(self.data["AgeCategory"].unique()))
         Race = col2.selectbox(
-            'Please spcify your race?', self.data["Race"].unique())
+            'Please spcify your race?', sorted(self.data["Race"].unique()))
         Diabetic = col3.selectbox(
-            'Do you suffer from diabetes?', self.data["Diabetic"].unique())
+            'Do you suffer from diabetes?', sorted(self.data["Diabetic"].unique()))
 
         # Row #5
         # TODO: Add inputs for PhysicalActivity, GenHealth, and SleepTime,
@@ -91,5 +91,6 @@ class TheHomePage:
         prediction = self.model.predict(transformed_input_data)[0]
 
         # Display the diagnosis
+        st.write("---")
         diagnosis = "Heart Disease 🚑" if prediction == 1 else "No Heart Disease ✅"
         st.subheader(f"Your diagnosis: {diagnosis}")
