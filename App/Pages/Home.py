@@ -33,7 +33,7 @@ class TheHomePage:
         
         Diabetic = st.selectbox('Have you ever had a stroke', ('Yes', 'No'))
         
-        PhysicalActivity =st.selectbox('Do you engage in physical Activity', ('Yes','No))
+        PhysicalActivity =st.selectbox('Do you engage in physical Activity', ('Yes','No'))
 
         
         # Prepare the model's input data
