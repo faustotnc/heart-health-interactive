@@ -22,7 +22,7 @@ MODEL = load_trained_model()
 
 THE_HOME_PAGE = Home.TheHomePage(DATA, MODEL)
 THE_DATA_PAGE = TheData.TheDataPage()
-THE_MODEL_PAGE = TheModel.TheModelPage()
+THE_MODEL_PAGE = TheModel.TheModelPage(DATA, MODEL)
 
 st.title("Heart Health Interactive")
 st.write("---")
