@@ -89,7 +89,8 @@ class TheModelPage:
             the importance or "rank" of the features used to train the model. The following chart shows
             the relative rank of the top-10 most important features found in the dataset. While physical
             and mental health were among the three most important features when it comes to determining
-            a person's risk of heath disease, the amount of time they sleep turned out to be 30% more important.
+            a person's risk of heath disease, the amount of time they sleep turned out to be 37% more
+            important.
         """)
         add_space(24)
 
