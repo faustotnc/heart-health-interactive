@@ -40,7 +40,7 @@ class TheModelPage:
         """)
 
         st.write("""
-            To accomplish this task, we used the publicly availabe data titled "Personal Key Indicators
+            To accomplish this task, we used the publicly available data titled "Personal Key Indicators
             of Heart Disease" and can be found at https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease.
             We then used PyCaret to find the best machine learning model for this type of problem. After
             some experimentation, we found that a Light Gradient Boosting Machine (lightgbm) model

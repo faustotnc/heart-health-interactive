@@ -50,16 +50,14 @@ class TheHomePage:
             'Do you suffer from diabetes?', sorted(self.data["Diabetic"].unique()))
 
         # Row #5
-        # TODO: Add inputs for PhysicalActivity, GenHealth, and SleepTime,
-        PhysicalActvity = col1.selectbox(
-            'Have you done physical actvity in the past 30 days', self.data["PhysicalActvity"].unique())
+        PhysicalActivity = col1.selectbox(
+            'Have you done physical activity in the past 30 days', self.data["PhysicalActivity"].unique())
         GenHealth = col2.selectbox(
-            'Would you say that your physical health is very good, good or other', self.data["PhyisicalActvity"].unique())
+            'Would you say that your physical health is very good, good or other', self.data["GenHealth"].unique())
         SleepTime = col3.slider(
             'On average how many hours do you sleep in a 24 hour period', int(self.data["SleepTime"].min()), int(self.data["SleepTime"].max()))
-        
+
         # Row #6
-        # TODO: Add inputs for Asthma, KidneyDisease, and SkinCancer,
         Asthma = col1.selectbox(
             'Have you ever been told you have Asthma', self.data["Asthma"].unique())
         KidneyDisease = col2.selectbox(
@@ -68,31 +66,29 @@ class TheHomePage:
             'Have you ever been told you have Skin Cancer', self.data["SkinCancer"].unique())
 
         # Prepare the model's input data
-        # TODO: Assign each of the above variables to their corresponding
-        # column in this pandas dataframe.
         input_data = pd.DataFrame({
-            "BMI": 34.3,  # TODO: Compute BMI from weight and height
+            "BMI": (weight/(height)**2) * 703,  # TODO: Compute BMI from weight and height
             "Smoking": "Yes",
 
-            "AlcoholDrinking": "Yes",
-            "Stroke": "Yes",
-            "PhysicalHealth": 0.0,
+            "AlcoholDrinking": AlcoholDrinking,
+            "Stroke": Stroke,
+            "PhysicalHealth": PhysicalHealth,
 
-            "MentalHealth": 30,
-            "DiffWalking": "No",
-            "Sex": "Male",
+            "MentalHealth": MentalHealth,
+            "DiffWalking": DiffWalking,
+            "Sex": Sex,
 
-            "AgeCategory": "18-24",
-            "Race": "White",
-            "Diabetic": "No",
+            "AgeCategory": AgeCategory,
+            "Race": Race,
+            "Diabetic": Diabetic,
 
-            "PhysicalActivity": "Yes",
-            "GenHealth": "Good",
-            "SleepTime": 15,
+            "PhysicalActivity": PhysicalActivity,
+            "GenHealth": GenHealth,
+            "SleepTime": SleepTime,
 
-            "Asthma": "No",
-            "KidneyDisease": "No",
-            "SkinCancer": "No"
+            "Asthma": Asthma,
+            "KidneyDisease": KidneyDisease,
+            "SkinCancer": SkinCancer
         }, index=[0])
 
         # Transform the input to one-hot encode categorical variables
@@ -100,9 +96,11 @@ class TheHomePage:
         transformed_input_data = prep_pipe.transform(input_data)
 
         # Make a Prediction
-        prediction = self.model.predict(transformed_input_data)[0]
+        prediction = self.model.predict_proba(transformed_input_data)[0][1]
 
         # Display the diagnosis
         st.write("---")
-        diagnosis = "Heart Disease 🚑" if prediction == 1 else "No Heart Disease ✅"
-        st.subheader(f"Your diagnosis: {diagnosis}")
+        diagnosis = "At Risk 🚑" if prediction >= 0.4 else "Not at Risk ✅"
+        st.header(f"Diagnosis: {diagnosis}")
+        st.subheader(
+            f"You have a {round(prediction * 100, 2)}% change of developing heart disease.")
