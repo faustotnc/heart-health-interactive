@@ -67,7 +67,7 @@ class TheHomePage:
 
         # Prepare the model's input data
         input_data = pd.DataFrame({
-            "BMI": 34.3,  # TODO: Compute BMI from weight and height
+            "BMI": weight/(height)**2,  # TODO: Compute BMI from weight and height
             "Smoking": "Yes",
 
             "AlcoholDrinking": AlcoholDrinking,
