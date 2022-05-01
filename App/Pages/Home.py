@@ -51,9 +51,21 @@ class TheHomePage:
 
         # Row #5
         # TODO: Add inputs for PhysicalActivity, GenHealth, and SleepTime,
-
+        PhysicalActvity = col1.selectbox(
+            'Have you done physical actvity in the past 30 days', self.data["PhysicalActvity"].unique())
+        GenHealth = col2.selectbox(
+            'Would you say that your physical health is very good, good or other', self.data["PhyisicalActvity"].unique())
+        SleepTime = col3.slider(
+            'On average how many hours do you sleep in a 24 hour period', int(self.data["SleepTime"].min()), int(self.data["SleepTime"].max()))
+        
         # Row #6
         # TODO: Add inputs for Asthma, KidneyDisease, and SkinCancer,
+        Asthma = col1.selectbox(
+            'Have you ever been told you have Asthma', self.data["Asthma"].unique())
+        KidneyDisease = col2.selectbox(
+            'Have you ever been told you have Kidney Diease', self.data["KidneyDisease"].unique())
+        SkinCancer = col3.selectbox(
+            'Have you ever been told you have Skin Cancer', self.data["SkinCancer"].unique())
 
         # Prepare the model's input data
         # TODO: Assign each of the above variables to their corresponding
