@@ -1,0 +1,32 @@
+import pandas as pd
+from vega_datasets import data
+from matplotlib import pyplot as plt
+from matplotlib import colors as c
+
+df = pd.read_csv('heart_2020_cleaned.csv')
+
+# Convert color palette into rgba format for later use
+c1 = c.to_rgba('#BF4E4E')
+c5 = c.to_rgba('#5FB0B7')
+
+binary_cols = ['HeartDisease','Sex','Smoking','AlcoholDrinking','Stroke','Asthma', 'DiffWalking','PhysicalActivity','KidneyDisease','SkinCancer']
+
+
+for i in range(1, len(binary_cols)):
+    fig = plt.figure(figsize=(8,4), dpi=80)
+    
+    # Plot distribution of adults with heart disease
+    ax1 = plt.subplot(1,2,1)
+    df[df['HeartDisease'] == 'Yes'].groupby(df[binary_cols[i]]).HeartDisease.count().plot(kind='pie', colors= [c1, c5], autopct='%.1f%%', labeldistance=None,
+                                                                                        wedgeprops = { 'linewidth' : 7, 'edgecolor' : 'white', 'width':0.35 })
+    plt.gca().axes.get_yaxis().set_visible(False)
+    plt.title("With heart disease")
+    
+    # Plot distribution of adults without heart disease
+    ax2 = plt.subplot(1,2,2)
+    df[df['HeartDisease'] == 'No'].groupby(df[binary_cols[i]]).HeartDisease.count().plot(kind='pie',  colors= [c1, c5], autopct='%.1f%%', labeldistance=None,
+                                                                                     wedgeprops = { 'linewidth' : 7, 'edgecolor' : 'white', 'width':0.35 })
+    plt.gca().axes.get_yaxis().set_visible(False)
+    plt.title("Without heart disease")
+    plt.suptitle("Patient's Heart Disease distribution by " + binary_cols[i] + " status", fontweight='bold')
+    
