@@ -67,25 +67,20 @@ class TheHomePage:
 
         # Prepare the model's input data
         input_data = pd.DataFrame({
-            "BMI": (weight/(height)**2) * 703,  # TODO: Compute BMI from weight and height
-            "Smoking": "Yes",
-
+            "BMI": ((weight or 0.01)/(height or 0.01)**2) * 703,
+            "Smoking": Smoking,
             "AlcoholDrinking": AlcoholDrinking,
             "Stroke": Stroke,
             "PhysicalHealth": PhysicalHealth,
-
             "MentalHealth": MentalHealth,
             "DiffWalking": DiffWalking,
             "Sex": Sex,
-
             "AgeCategory": AgeCategory,
             "Race": Race,
             "Diabetic": Diabetic,
-
             "PhysicalActivity": PhysicalActivity,
             "GenHealth": GenHealth,
             "SleepTime": SleepTime,
-
             "Asthma": Asthma,
             "KidneyDisease": KidneyDisease,
             "SkinCancer": SkinCancer

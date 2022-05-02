@@ -204,7 +204,11 @@ class TheModelPage:
 
     def add_feature_importance(self):
         importances = pd.DataFrame({
-            "feature": ["Sleep Time", "Physical Health", "Mental Health", "BMI", "Has Asthma", "Race: White", "Sex: Female", "Has Had Stroke", "Exceellent Gen. Health", "Age: 80 or Older"],
+            "feature": [
+                "Sleep Time", "Physical Health", "Mental Health", "BMI", "Has Asthma",
+                "Race: White", "Sex: Female", "Has Had Stroke", "Exceellent Gen. Health",
+                "Age: 80 or Older"
+            ],
             "importance": [625, 390, 370, 240, 110, 105, 80, 80, 60, 55],
         }).sort_values(
             by=['importance'],
@@ -220,7 +224,8 @@ class TheModelPage:
                 'importance:Q',
                 scale=alt.Scale(scheme="greens"),
                 legend=None
-            )
+            ),
+            tooltip=["importance:Q"]
         ).properties(
             height=600,
         ).configure_axis(
