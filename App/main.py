@@ -3,13 +3,12 @@ from Pages import Home, TheData, TheModel
 from pycaret.classification import *
 
 
-# @st.cache
+@st.cache
 def load_trained_model():
-    load_config("./Data/model_config")
     return load_model("./Data/final_model")["trained_model"]
 
 
-# @st.cache
+@st.cache
 def load_the_data():
     return pd.read_csv("./Data/heart_2020.csv")
 

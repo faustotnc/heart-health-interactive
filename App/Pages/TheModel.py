@@ -1,34 +1,14 @@
-from matplotlib.pyplot import title
-from pycaret.classification import get_config
 import streamlit as st
 import altair as alt
 import pandas as pd
-from sklearn.metrics import precision_recall_fscore_support
-import numpy as np
-from lightgbm import LGBMClassifier
 
 from helpers import add_space
-
-
-@st.cache
-def redo_lightbm_model():
-    prefinal_model = LGBMClassifier(n_jobs=-1, random_state=123)
-    prefinal_model.fit(get_config("X_train"), get_config("y_train"))
-    prefinal_model_binary_pred = prefinal_model.predict(get_config("X_test"))
-    prefinal_model_prob_pred = prefinal_model.predict_proba(
-        get_config("X_test"))
-    return (prefinal_model, prefinal_model_binary_pred, prefinal_model_prob_pred)
 
 
 class TheModelPage:
     def __init__(self, data, model) -> None:
         self.data = data
         self.model = model
-
-        m, bp, pp = redo_lightbm_model()
-        self.pre_final_model = m
-        self.prefinal_binary_pred = bp
-        self.prefinal_prob_pred = pp
 
     def display(self):
         st.header("About the Model")
@@ -149,13 +129,11 @@ class TheModelPage:
 
     def add_class_report_chart(self):
         # Convert this grid to columnar data expected by Altair
-        scores = precision_recall_fscore_support(
-            get_config("y_test"), self.prefinal_binary_pred)
 
         class_report_source = pd.DataFrame({
             'x': ["Precision", "Precision", "Recall", "Recall", "F1", "F1"],
             'y': ["No", "Yes", "No", "Yes", "No", "Yes"],
-            'score': np.around(scores, decimals=3, out=None)[:3].ravel()
+            'score': [0.894, 0.934, 0.937, 0.890, 0.915, 0.911]
         })
 
         class_rep_base = alt.Chart(class_report_source).properties(
