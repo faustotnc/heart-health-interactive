@@ -95,7 +95,7 @@ class TheHomePage:
 
         # Display the diagnosis
         st.write("---")
-        diagnosis = "At Risk 🚑" if prediction >= 0.4 else "Not at Risk ✅"
+        diagnosis = "At Risk 🚑" if prediction >= 0.30 else "Not at Risk ✅"
         st.header(f"Diagnosis: {diagnosis}")
         st.subheader(
             f"You have a {round(prediction * 100, 2)}% change of developing heart disease.")
